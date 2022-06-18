@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 21:27:51 by aminsadiq         #+#    #+#             */
+/*   Updated: 2022/06/17 22:12:26 by aminsadiq        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stddef.h>
 
 size_t	ft_strlcat(char *restrict dest, char *restrict src, size_t dstsize)
 {
-	size_t dest_len;
-	size_t src_len;
-	size_t index;
+	size_t	dest_len;
+	size_t	src_len;
+	size_t	index;
 
 	dest_len = 0;
 	src_len = 0;

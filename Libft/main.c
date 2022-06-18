@@ -135,11 +135,14 @@ int main(void)
 	printf("Test 4 - c at start\n");
 	char testchrr4[] = "c at start";
 	strcmp(ft_strrchr(testchrr4, 'c'), strrchr(testchrr4, 'c')) == 0 ? printf(ANSI_COLOR_GREEN "Passed." ANSI_COLOR_RESET "\n") :printf(ANSI_COLOR_RED "Failed!" ANSI_COLOR_RESET "\n");
-	
+	printf("Test 5 - check for null\n");
+	char testchrr5[] = "check for null";
+	strcmp(ft_strrchr(testchrr5, 0), strrchr(testchrr5, 0)) == 0 ? printf(ANSI_COLOR_GREEN "Passed." ANSI_COLOR_RESET "\n") :printf(ANSI_COLOR_RED "Failed!" ANSI_COLOR_RESET "\n");
+
 
 	printf("\nTesting ft_memchr\n");
 	printf("Test 1 - Find c in this string\n");
-	char testmemchr[] = " Find c in this string";
+	char testmemchr[] = "Find c in this string";
 	strcmp(ft_memchr(testmemchr, 'c', strlen(testmemchr)), memchr(testmemchr, 'c', strlen(testmemchr))) == 0 ? printf(ANSI_COLOR_GREEN "Passed." ANSI_COLOR_RESET "\n") :printf(ANSI_COLOR_RED "Failed!" ANSI_COLOR_RESET "\n");
 	printf("Test 2 - return null here\n");
 	char testmemchr2[] = "return null here";

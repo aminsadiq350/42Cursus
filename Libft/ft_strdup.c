@@ -1,6 +1,18 @@
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/17 19:14:12 by aminsadiq         #+#    #+#             */
+/*   Updated: 2022/06/17 19:16:14 by aminsadiq        ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char *strdup(const char *s1)
+#include "libft.h"
+
+char	*ft_strdup(const char *s1)
 {
 	int		size;
 	char	*cpy;
