@@ -154,5 +154,11 @@ int main(void)
 	char testmemchr4[] = "c at start";
 	strcmp(ft_memchr(testmemchr4, 'c', strlen(testmemchr4)), memchr(testmemchr4, 'c', strlen(testmemchr4))) == 0 ? printf(ANSI_COLOR_GREEN "Passed." ANSI_COLOR_RESET "\n") :printf(ANSI_COLOR_RED "Failed!" ANSI_COLOR_RESET "\n");
 	
+	printf("\nTesting ft_substr\n");
+	printf("String is: %s\n", ft_substr("tripouille", 0, 42000));
+
+	printf("\nTesting ft_strjoin\n");
+	printf("String is: %s\n", ft_strjoin("tripouille", "42"));
+
 	return 0;
 }

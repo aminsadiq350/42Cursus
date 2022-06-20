@@ -6,7 +6,7 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 22:08:39 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/17 22:08:42 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/06/20 17:45:13 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,19 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int	val;
+	unsigned int nbr;
 
+	nbr = (unsigned int)n;
 	if (n < 0)
 	{
 		ft_putchar_fd('-', fd);
-		val = (unsigned int)(n * -1);
+		nbr = -1 * (n);
+	}
+	if (nbr >= 10)
+	{
+		ft_putnbr_fd(nbr / 10, fd);
+		ft_putnbr_fd(nbr % 10, fd);
 	}
 	else
-		val = (unsigned int)n;
-	if (val >= 10)
-		ft_putnbr_fd(val / 10, fd);
-	ft_putchar_fd((char)(val % 10 + 48), fd);
+		ft_putchar_fd(nbr + '0', fd);
 }
