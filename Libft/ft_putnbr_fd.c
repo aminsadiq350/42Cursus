@@ -6,7 +6,7 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 22:08:39 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/20 17:45:13 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/06/25 21:04:27 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int nbr;
+	unsigned int	nbr;
 
 	nbr = (unsigned int)n;
 	if (n < 0)
