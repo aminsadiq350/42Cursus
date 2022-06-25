@@ -14,9 +14,12 @@
 
 void	*ft_memcpy(void *restrict dst, const void *restrict src, size_t n)
 {
+	void	*dest;
+
+	dest = dst;
 	if (dst == NULL && src == NULL)
 		return (NULL);
 	while (n--)
 		*(unsigned char *)dst++ = *(unsigned char *)src++;
-	return (dst);
+	return (dest);
 }
