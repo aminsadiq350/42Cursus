@@ -6,7 +6,7 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 21:27:51 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/18 18:28:03 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/06/26 02:31:36 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ size_t	ft_strlcat(char *restrict dest, char *restrict src, size_t dstsize)
 		dest[dest_len + index] = src[index];
 		index++;
 	}
-	dest[dest_len + index] = '\0';
+	if (index > 0)
+		dest[dest_len + index] = '\0';
 	return (src_len);
 }

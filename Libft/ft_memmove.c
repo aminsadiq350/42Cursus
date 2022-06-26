@@ -6,7 +6,7 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 19:41:11 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/17 22:13:37 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/06/26 03:41:51 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	unsigned char	*dest;
 
 	dest = dst;
+	if (dst == src)
+		return (dst);
 	if (dst < src)
 	{
 		while (len--)

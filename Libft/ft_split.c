@@ -6,14 +6,14 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/14 18:11:24 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/14 18:11:40 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/06/26 04:03:38 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include "libft.h"
 
-int	count_strings(char const *s, char c)
+static int	count_strings(char const *s, char c)
 {
 	int	act_pos;
 	int	str_count;
@@ -32,7 +32,7 @@ int	count_strings(char const *s, char c)
 	return (str_count);
 }
 
-char	*malloc_strings(const char *s, char c)
+static char	*malloc_strings(const char *s, char c)
 {
 	char	*word;
 	int		i;
