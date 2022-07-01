@@ -9,75 +9,66 @@
 /*   Updated: 2022/06/28 01:10:09 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stddef.h>
 #include "libft.h"
 
-static int	count_strings(char const *s, char c)
+size_t	get_count(char const *s, char c)
 {
-	int	act_pos;
-	int	str_count;
+	size_t		count;
 
-	act_pos = 0;
-	str_count = 0;
-	if (s[act_pos] == c)
-		str_count--;
-	while (s[act_pos] != '\0')
-	{
-		if (s[act_pos] == c && s[act_pos + 1] != c && s[act_pos + 1] != '\0')
-			str_count++;
-		act_pos++;
-	}
-	str_count++;
-	return (str_count);
-}
-
-static char	*malloc_strings(const char *s, char c)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	word = (char *)malloc(sizeof(char) * (i + 1));
-	if (!word)
-		return (NULL);
-	i = 0;
-	while (s[i] && s[i] != c)
-	{
-		word[i] = s[i];
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		words;
-	char	**tab;
-	int		i;
-
-	if (!s)
-		return (NULL);
-	words = count_strings(s, c);
-	tab = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!tab)
-		return (NULL);
-	i = 0;
+	count = 0;
 	while (*s)
 	{
-		while (*s && *s == c)
+		if (*s == c)
 			s++;
-		if (*s && *s != c)
+		else
 		{
-			tab[i] = malloc_strings(s, c);
-			i++;
+			count++;
 			while (*s && *s != c)
 				s++;
 		}
 	}
-	tab[i] = NULL;
-	return (tab);
+	return (count);
+}
+
+char	**free_machine(char **s, size_t idx)
+{
+	while (s[idx] != NULL)
+	{
+		free(s[idx]);
+		s[idx] = NULL;
+		idx--;
+	}
+	free(s);
+	s = NULL;
+	return (NULL);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	size_t		idx;
+	size_t		len;
+	size_t		word_cnt;
+	char		**words;
+
+	word_cnt = get_count(s, c);
+	words = (char **)malloc(sizeof(char *) * (word_cnt + 1));
+	if (!s || !words)
+		return (NULL);
+	idx = 0;
+	while (*s)
+	{
+		if (*s == c)
+			s++;
+		else
+		{
+			len = 0;
+			while (*(s + len) && *(s + len) != c)
+				len++;
+			if (idx < word_cnt && !(words[idx++] = ft_substr(s, 0, len)))
+				return (free_machine(words, idx));
+			s += len;
+		}
+	}
+	words[idx] = 0;
+	return (words);
 }
