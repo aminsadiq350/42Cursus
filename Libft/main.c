@@ -160,7 +160,12 @@ int main(void)
 	// char *dest = (char *)malloc(sizeof(*dest) * 15);
 	// memset(dest, 'r', 15);
 	// char		str2[] = "bonjour";
-	printf("%d", ft_strncmp("test\200", "test\0", 6));
+	char *str;
+	str = malloc(2);
+	// str = "h\n";
+	printf("%s", str);
+	free(str);
+	// printf("%d", ft_strncmp("test\200", "test\0", 6));
 
 	return 0;
 }
