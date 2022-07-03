@@ -160,12 +160,37 @@ int main(void)
 	// char *dest = (char *)malloc(sizeof(*dest) * 15);
 	// memset(dest, 'r', 15);
 	// char		str2[] = "bonjour";
-	char *str;
-	str = malloc(2);
-	// str = "h\n";
-	printf("%s", str);
-	free(str);
+	// char *str;
+	// str = malloc(2);
+	// // str = "h\n";
+	// printf("%s", str);
+	// free(str);
 	// printf("%d", ft_strncmp("test\200", "test\0", 6));
+
+	// char *s = "iamastring";
+	// char s2[3] = {'a', 'b', 'c'};
+	// char *s3 = "iam3rdastring";
+	// char **res;
+
+	// res = (char **)malloc(2);
+	// *res = (char *)malloc(3);
+	// res[0] = ft_strdup(s);
+	// res[1] = ft_strdup(s2);
+	// res[2] = ft_strdup(s3);
+	// printf("%s", res[0]);
+	// printf("%s", res[1]);
+	// printf("%s", res[2]);
+
+	char **str;
+	char *s = "baabaaccbaabb";
+	str = ft_split(s, 'b');
+	while (*str)
+		printf("%s\n", *str++);
+
+	// char *s = "baabaab";
+ 	// ft_split(s, 'b');
+
+
 
 	return 0;
 }
