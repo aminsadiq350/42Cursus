@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/21 19:34:28 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/07/09 01:39:05 by aminsadiq        ###   ########.fr       */
+/*   Created: 2022/07/09 01:31:34 by aminsadiq         #+#    #+#             */
+/*   Updated: 2022/07/09 01:51:10 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "utils.h"
 
-# include <stdarg.h>
+int	ft_print_nbr(int n)
+{
+	unsigned int	nbr;
+	int				count;
 
-int	ft_printf(const char *str, ...);
-
-#endif // FT_PRINTF_H
+	nbr = (unsigned int)n;
+	count = 0;
+	if (n < 0)
+	{
+		count += ft_print_char('-');
+		nbr = -1 * (n);
+	}
+	if (nbr >= 10)
+	{
+		count += ft_print_nbr(nbr / 10);
+		count += ft_print_nbr(nbr % 10);
+	}
+	else
+		count += ft_print_char(nbr + '0');
+	return (count);
+}

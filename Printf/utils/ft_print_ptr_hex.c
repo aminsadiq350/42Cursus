@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_print_ptr_hex.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/17 22:08:39 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/24 12:15:36 by aminsadiq        ###   ########.fr       */
+/*   Created: 2022/07/09 01:23:25 by aminsadiq         #+#    #+#             */
+/*   Updated: 2022/07/09 01:51:46 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "utils.h"
 
-int	ft_putnbr_fd(int n, int fd)
+static int	ft_hex_generator(uintptr_t nbr)
 {
-	unsigned int	nbr;
-	int				count; //SHOULD FIND ANOTHER WAY FOR COUNT IN LIBFT
+	char	*representation;
+	int		count;
 
-	nbr = (unsigned int)n;
 	count = 0;
-	if (n < 0)
+	representation = "0123456789abcdef";
+	if (nbr >= 16)
 	{
-		ft_putchar_fd('-', fd);
-		nbr = -1 * (n);
-		count++;
-	}
-	if (nbr >= 10)
-	{
-		count += ft_putnbr_fd(nbr / 10, fd);
-		count += ft_putnbr_fd(nbr % 10, fd);
+		count += ft_hex_generator(nbr / 16);
+		count += ft_hex_generator(nbr % 16);
 	}
 	else
-	{
-		ft_putchar_fd(nbr + '0', fd);
-		count++;
-	}
+		count += ft_print_char(representation[nbr]);
+	return (count);
+}
+
+int	ft_print_ptr_hex(uintptr_t nbr)
+{
+	int		count;
+
+	count = 0;
+	count += ft_print_str("0x");
+	count += ft_hex_generator(nbr);
 	return (count);
 }

@@ -6,7 +6,7 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 00:23:58 by ashaikhn          #+#    #+#             */
-/*   Updated: 2022/06/24 12:16:42 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/07/09 01:33:57 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
-int		ft_putnbr_fd(int n, int fd);
 size_t	ft_strlen(const char *str);
 
 #endif // LIBFT_H

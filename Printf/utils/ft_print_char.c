@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/21 19:34:28 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/07/09 01:39:05 by aminsadiq        ###   ########.fr       */
+/*   Created: 2022/07/09 01:24:18 by aminsadiq         #+#    #+#             */
+/*   Updated: 2022/07/09 01:41:28 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "utils.h"
 
-# include <stdarg.h>
+int	ft_print_char(int arg)
+{
+	int	count;
 
-int	ft_printf(const char *str, ...);
-
-#endif // FT_PRINTF_H
+	count = 0;
+	ft_putchar_fd(arg, 1);
+	return (++count);
+}

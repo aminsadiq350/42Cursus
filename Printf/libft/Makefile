@@ -1,5 +1,5 @@
 NAME		= 	libft.a
-SRCS		= 	$(wildcard ft_*.c)
+SRCS		= 	ft_putchar_fd.c ft_putstr_fd.c  ft_strlen.c
 OBJS		=	${SRCS:.c=.o}
 RM			= 	rm -rf
 CFLAGS		= 	-Wall -Wextra -Werror
@@ -14,6 +14,7 @@ clean:
 
 fclean: 		clean
 				${RM} ${NAME}
+				${RM} *.h.gch
 
 re :        	fclean all
 

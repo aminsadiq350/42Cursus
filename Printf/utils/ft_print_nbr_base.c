@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_print_nbr_base.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/23 18:03:12 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/24 12:00:15 by aminsadiq        ###   ########.fr       */
+/*   Created: 2022/07/08 22:07:47 by aminsadiq         #+#    #+#             */
+/*   Updated: 2022/07/09 01:43:41 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-int	ft_putnbr_base(int nbr, unsigned int base_num, char *representation)
+int	ft_print_nbr_base(int nbr, unsigned int base_num, char *representation)
 {
 	unsigned int	nb;
 	int				count;
 
 	count = 0;
 	nb = (unsigned int)nbr;
-
 	if (nb >= base_num)
 	{
-		count += ft_putnbr_base((nb / base_num), base_num, representation);
-		count += ft_putnbr_base((nb % base_num), base_num, representation);
+		count += ft_print_nbr_base((nb / base_num), base_num, representation);
+		count += ft_print_nbr_base((nb % base_num), base_num, representation);
 	}
 	else
-	{
-		ft_putchar_fd(representation[nb], 1);
-		count++;
-	}
+		count += ft_print_char(representation[nb]);
 	return (count);
 }
