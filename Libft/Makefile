@@ -7,6 +7,7 @@ SRCS		= 	ft_isalnum.c ft_itoa.c ft_memset.c ft_split.c ft_strlcat.c ft_strnstr.c
 OBJS		=	${SRCS:.c=.o}
 RM			= 	rm -rf
 CFLAGS		= 	-Wall -Wextra -Werror
+CC			=	cc
 
 ${NAME}:		${OBJS}
 				ar -rcs ${NAME} ${OBJS}
