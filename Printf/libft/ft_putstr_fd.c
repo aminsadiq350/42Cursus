@@ -6,7 +6,7 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 22:06:06 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/20 17:32:08 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/07/13 18:47:34 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	if (s == NULL)
+		return ;
 	while (*s)
 	{
 		ft_putchar_fd(*s, fd);
