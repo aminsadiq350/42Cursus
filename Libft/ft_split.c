@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                       :+:      :+:    :+:     */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/17 21:27:02 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/06/18 18:23:16 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/07/13 18:17:34 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char	**ft_split(const char *s, char c)
 	size_t	n;
 
 	n = 0;
+	if (s == NULL)
+		return (NULL);
 	sup_str_number = count_sup_str(s, c);
 	full_str = (char **)malloc(sizeof(*full_str) * (count_sup_str(s, c) + 1));
 	if (!full_str)
