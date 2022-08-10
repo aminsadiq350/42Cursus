@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ashaikhn <ashaikhn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 19:47:48 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/08/08 02:50:28 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/08/10 18:30:56 by ashaikhn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ char	*get_next_line(int fd)
 {
 	static char		*tempstr;
 	char			*str;
+	char			*buffer;
 	int				new_line_index;
 	int				new_line_check;
-	int				count;
 
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -127,19 +127,18 @@ char	*get_next_line(int fd)
 	}
 	new_line_check = 0;
 	new_line_index = -1;
-	count = 0;
 	str = ft_strdup("");
 	while (read(fd, tempstr, BUFFER_SIZE) > 0 && !new_line_check)
 	{
-		count++;
 		tempstr[BUFFER_SIZE] = '\0';
-		// printf("tempstr: %s\n", tempstr);
 		new_line_index = find_new_line_index(tempstr);
-		// printf("new_line_index: %d\n", new_line_index);
-		if (new_line_index > 0)
+		if (new_line_index >= 0)
 		{
 			new_line_check = 1;
-			str = ft_substr(tempstr, 0, (new_line_index * 2));
+			buffer = ft_substr(tempstr, 0, new_line_index);
+			str = ft_strjoin(str, buffer);
+			tempstr = ft_substr(tempstr, new_line_index, BUFFER_SIZE);
+			cleanup(buffer);
 		}
 		else
 			str = ft_strjoin(str, tempstr);
