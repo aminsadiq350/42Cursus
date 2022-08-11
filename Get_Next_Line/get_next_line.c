@@ -6,7 +6,7 @@
 /*   By: ashaikhn <ashaikhn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 19:47:48 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/08/10 18:30:56 by ashaikhn         ###   ########.fr       */
+/*   Updated: 2022/08/11 13:56:31 by ashaikhn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,13 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	new_line_check = 0;
-	new_line_index = -1;
+	new_line_index = 0;
 	str = ft_strdup("");
+	tempstr[BUFFER_SIZE] = '\0';
 	while (read(fd, tempstr, BUFFER_SIZE) > 0 && !new_line_check)
 	{
-		tempstr[BUFFER_SIZE] = '\0';
 		new_line_index = find_new_line_index(tempstr);
+		printf("new_line_index: %d\n", new_line_index);
 		if (new_line_index >= 0)
 		{
 			new_line_check = 1;
@@ -143,5 +144,6 @@ char	*get_next_line(int fd)
 		else
 			str = ft_strjoin(str, tempstr);
 	}
+	cleanup(tempstr);
 	return (str);
 }

@@ -30,8 +30,8 @@ int	main(int argc, char **argv)
 	}
 	str = get_next_line(fd);
 	printf("%s", str);
-	// str = get_next_line(fd);
-	// printf("%s", str);
+	str = get_next_line(fd);
+	printf("%s", str);
 	// if(str)
 		free(str);
 	printf("\n\n\nEnd of Test Program!\n\n");
