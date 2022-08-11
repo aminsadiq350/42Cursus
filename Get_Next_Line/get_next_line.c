@@ -6,7 +6,7 @@
 /*   By: ashaikhn <ashaikhn@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 19:47:48 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/08/11 13:56:31 by ashaikhn         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:45:21 by ashaikhn         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,10 @@ char	*get_next_line(int fd)
 	char			*buffer;
 	int				new_line_index;
 	int				new_line_check;
+	static int		times_called = 0;
 
+	times_called++;
+	printf("\n\nTimes Called: %d\n\n", times_called);
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
 	tempstr = (char *) ft_calloc((BUFFER_SIZE + 1), sizeof(char));
@@ -127,12 +130,22 @@ char	*get_next_line(int fd)
 	}
 	new_line_check = 0;
 	new_line_index = 0;
-	str = ft_strdup("");
+	// if (tempstr != NULL)
+	// {
+	// 	printf("AM HERE");
+	// 	str = ft_strdup("");
+	// 	str = ft_strjoin(str, tempstr);
+	// 	tempstr = ft_strdup("");
+	// }
+	// else
+		str = ft_strdup("");
 	tempstr[BUFFER_SIZE] = '\0';
+	printf("Static tempstr: %s !\n", tempstr);
+
 	while (read(fd, tempstr, BUFFER_SIZE) > 0 && !new_line_check)
 	{
 		new_line_index = find_new_line_index(tempstr);
-		printf("new_line_index: %d\n", new_line_index);
+		// printf("tempstr: %s and new_line_index: %d\n", tempstr, new_line_index);
 		if (new_line_index >= 0)
 		{
 			new_line_check = 1;
@@ -144,6 +157,5 @@ char	*get_next_line(int fd)
 		else
 			str = ft_strjoin(str, tempstr);
 	}
-	cleanup(tempstr);
 	return (str);
 }
