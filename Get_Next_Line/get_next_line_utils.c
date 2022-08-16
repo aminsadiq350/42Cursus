@@ -6,7 +6,7 @@
 /*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 19:47:42 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/08/08 01:47:33 by aminsadiq        ###   ########.fr       */
+/*   Updated: 2022/08/14 20:34:26 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ size_t	ft_strlen(const char *str)
 	size_t	count;
 
 	count = 0;
+	if (!str)
+		return (0);
 	while (*str++)
 	{
 		count++;
@@ -86,6 +88,9 @@ char	*ft_strchr(const char *s, int c)
 {
 	char	*str;
 
+	if (!s)
+		return (0);
+	
 	str = (char *)s;
 	while (*str)
 	{

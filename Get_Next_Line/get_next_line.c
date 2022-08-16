@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ashaikhn <ashaikhn@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aminsadiq <aminsadiq@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 19:47:48 by aminsadiq         #+#    #+#             */
-/*   Updated: 2022/08/11 16:45:21 by ashaikhn         ###   ########.fr       */
+/*   Updated: 2022/08/15 11:57:28 by aminsadiq        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,51 +111,55 @@ static int	find_new_line_index(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char		*tempstr;
+	static char		*tempstr = NULL;
 	char			*str;
 	char			*buffer;
-	int				new_line_index;
-	int				new_line_check;
+	int				nread;
 	static int		times_called = 0;
 
 	times_called++;
 	printf("\n\nTimes Called: %d\n\n", times_called);
 	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	tempstr = (char *) ft_calloc((BUFFER_SIZE + 1), sizeof(char));
-	if (!tempstr)
+	buffer = (char *) ft_calloc((BUFFER_SIZE + 1), sizeof(char));
+	if (!buffer)
 	{
-		cleanup(tempstr);
+		cleanup(buffer);
 		return (NULL);
 	}
-	new_line_check = 0;
-	new_line_index = 0;
-	// if (tempstr != NULL)
-	// {
-	// 	printf("AM HERE");
-	// 	str = ft_strdup("");
-	// 	str = ft_strjoin(str, tempstr);
-	// 	tempstr = ft_strdup("");
-	// }
-	// else
-		str = ft_strdup("");
-	tempstr[BUFFER_SIZE] = '\0';
-	printf("Static tempstr: %s !\n", tempstr);
+	nread = 1;
+	str = ft_strdup("");
+	printf("Static tempstr: %s and Len of tempstr: %zu\n", tempstr, ft_strlen(tempstr));
 
-	while (read(fd, tempstr, BUFFER_SIZE) > 0 && !new_line_check)
+
+	while(nread != 0)
 	{
-		new_line_index = find_new_line_index(tempstr);
-		// printf("tempstr: %s and new_line_index: %d\n", tempstr, new_line_index);
-		if (new_line_index >= 0)
+		if (ft_strchr(tempstr, '\n'))
 		{
-			new_line_check = 1;
-			buffer = ft_substr(tempstr, 0, new_line_index);
-			str = ft_strjoin(str, buffer);
-			tempstr = ft_substr(tempstr, new_line_index, BUFFER_SIZE);
-			cleanup(buffer);
+			str = ft_strjoin(str, ft_substr(tempstr, 0, find_new_line_index(tempstr)));
+			tempstr = ft_substr(tempstr, (find_new_line_index(tempstr) + 1), BUFFER_SIZE);
+			nread = 0;
 		}
 		else
-			str = ft_strjoin(str, tempstr);
+		{
+			nread = read(fd, buffer, BUFFER_SIZE);
+			printf("Buffer: %s and Len of buffer: %zu\n", buffer, ft_strlen(buffer));
+
+			buffer[BUFFER_SIZE] = '\0';
+			if (tempstr != NULL)
+				str = ft_strjoin(str, tempstr);
+			
+			if (ft_strchr(buffer, '\n'))
+			{
+				str = ft_strjoin(str, ft_substr(buffer, 0, find_new_line_index(buffer)));
+				tempstr = ft_substr(buffer, (find_new_line_index(buffer) + 1), BUFFER_SIZE);
+				nread = 0;
+				printf("\nStr1 is: %s\n", str);
+
+			}
+			else
+				str = ft_strjoin(str, buffer);
+		}
 	}
 	return (str);
 }

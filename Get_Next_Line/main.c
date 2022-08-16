@@ -21,13 +21,19 @@ int	main(int argc, char **argv)
 	file = fopen(path, "r");
 	fd = fileno(file);
 	printf("\nFile Descriptor: %d", fd);
-	printf("\nBuffer Size: %d\n\n", BUFFER_SIZE);
+	printf("\nBuffer Size: %d", BUFFER_SIZE);
 
 	if (!file)
 	{
 		perror(path);
 		return (EXIT_FAILURE);
 	}
+	str = get_next_line(fd);
+	printf("%s", str);
+	str = get_next_line(fd);
+	printf("%s", str);
+	str = get_next_line(fd);
+	printf("%s", str);
 	str = get_next_line(fd);
 	printf("%s", str);
 	str = get_next_line(fd);
